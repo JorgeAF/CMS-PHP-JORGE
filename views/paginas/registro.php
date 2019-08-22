@@ -1,7 +1,6 @@
 <?php
-    require_once 'controllers/UsuarioController.php';
-    $usuario = new UsuarioController();
-    $usuario->registro();
+
+    require('core/request.php');
 
     session_start();
     if (empty($_SESSION['key'])) {
@@ -12,21 +11,17 @@
 
     #Crear CSRF token
     $csrf = hash_hmac('sha256', 'registro.php', $_SESSION['key']);
-    #hash_hmac = Genera un valor cifrado mediante una clave especificada usando el método HMAC
-    #el algoritmo para cifrar, md5, etc
-    #mensaje a cifrar
-    #clave secreta compartida que se usará para generar el mensaje cifrado
 
     if (isset($_POST['registrar'])) {
-        #hash_equals = compara las cadenas, cifradas empleando el mismo tiempos
         if (hash_equals($csrf, $_POST['csrf'])) {
+            #hash_equals = compara las cadenas, cifradas empleando el mismo tiempos
             $datos = array(
                 'nombre'   => $_POST['nombre'],
                 'apodo'    => $_POST['apodo'],
                 'email'    => $_POST['email'],
-                'password' => md5($_POST['password'])
+                'password' => md5($_POST['password']), #Agregar después md5
             );
-            $usuario->guardarUsuario($datos);
+            $objeto->guardarUsuario($datos);
         } else {
             header('Location: error.php');
             die();
@@ -50,8 +45,10 @@
                             echo "<div class='alert alert-primary' role='alert'>".$_SESSION['mensaje']."</div>";
                         }
                     ?>
-                    <form action="registro.php" method="POST" name="registroForm" id="registroForm">
+                    <form action="index.php?page=registro" method="POST" name="registroForm" id="registroForm">
+                        <!-- Agregar después -->
                         <input type="hidden" name="csrf" id="csrf" value="<?php echo $csrf ?>">
+                        <!-- Terminado -->
                         <div class="row">
                             <div class="col-lg">
                                 <div class="form-group">
@@ -92,7 +89,7 @@
                         <div class="d-flex justify-content-lg-center">
                             <button type="submit" name="registrar" class="btn btn-signup--register align-self-center">Aceptar</button>
                         </div>
-                        <a href="#" class="register-link--haveaccount">¿Ya tiene una contraseña? Entrar</a>
+                        <a href="index.php?page=login" class="register-link--haveaccount">¿Ya tiene una contraseña? Entrar</a>
                     </form>
                 </div>
             </div>
