@@ -91,8 +91,8 @@ class BlogController {
 
 	public function leerArticulo() {
 		require_once('./views/includes/cabecera.php');
-    require_once('./views/paginas/leerArticulo.php');
-    require_once('./views/includes/pie.php');
+		require_once('./views/paginas/leerArticulo.php');
+		require_once('./views/includes/pie.php');
 	}
 
 	public function obtenerArticulo($slug) {
@@ -129,15 +129,15 @@ class BlogController {
 	}
 
 	public function buscarArticulos($cadena) {
-		/* $articulos = new Blog();
-		return $articulos->buscarArticulos($cadena, 10); */
+		$articulos = new Blog();
+		return $articulos->buscarArticulos($cadena, 10); 
 	}
 
 	private function obtenerIdArticulo($slug) {
 		$blog = new Blog();
 		$id = $blog->obtenerIdArticulo($slug);
 		foreach ($id as $r){
-			return $r['id'];
+			return $r['id_articulo'];
 		}
 	}
 

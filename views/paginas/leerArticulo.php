@@ -5,7 +5,7 @@
   $slug = $_GET['slug'];
   session_start();
 
-  /* if (isset ($_POST['enviar'])) {
+  if (isset ($_POST['enviar'])) {
     if (!empty($_POST['comentario'])) {
       $datos = array(
         'comentario' => $_POST['comentario'],
@@ -15,7 +15,7 @@
       $blog->publicarComentario($datos);
 
     }
-  } */
+  }
 
 ?>
 

@@ -43,7 +43,7 @@ class UsuarioController {
 		$respuesta = $usuario->accesoUsuario($datos['apodo'], $datos['password']);
 		if ($respuesta != false) {
 			foreach ($respuesta as $r) {
-				$_SESSION['id_usuario'] = $r['id'];
+				$_SESSION['id_usuario'] = $r['id_usuario'];
 				$_SESSION['id_rol'] = $r['id_rol'];
 			}
 			if ($_SESSION['id_rol'] == 1) {

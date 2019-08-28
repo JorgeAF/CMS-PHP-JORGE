@@ -43,7 +43,7 @@ class Blog extends ModeloBase {
 		return $resultado;
 	}
 
-	/* public function buscarArticulos($cadena, $limite) {
+	public function buscarArticulos($cadena, $limite) {
 		$db = new ModeloBase();
 		$query = "SELECT articulos.*, usuarios.apodo, categorias.categoria FROM articulos
 							LEFT JOIN usuarios ON usuarios.id_usuario = articulos.publicado_por
@@ -52,7 +52,7 @@ class Blog extends ModeloBase {
 
 		$resultado = $this->obtenerTodos($query);
 		return $resultado;
-	} */
+	}
 
 	public function obtenerArticulo($slug) {
 		$db = new ModeloBase();
@@ -64,29 +64,29 @@ class Blog extends ModeloBase {
 		return $resultado;
 	}
 
-	/* public function obtenerIdArticulo($slug) {
+	public function obtenerIdArticulo($slug) {
 		$db = new ModeloBase();
-		$query = "SELECT id FROM articulos WHERE slug = '".$slug."'";
+		$query = "SELECT id_articulo FROM articulos WHERE slug = '".$slug."'";
 		$resultado = $db->obtenerTodos($query);
 		return $resultado;
-	} */
+	}
 
-	/* public function guardarComentario($datos) {
+	public function guardarComentario($datos) {
 		$db = new ModeloBase();
 		try {
 			$insertar = $db->insertar('comentarios', $datos);
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 		}
-	} */
+	}
 
-	/* public function obtenerComentarios($id_articulo) {
+	public function obtenerComentarios($id_articulo) {
 		$db = new ModeloBase();
 		$query = "SELECT * FROM comentarios
 				  LEFT JOIN usuarios ON usuarios.id_usuario = comentarios.id_usuario
 				  WHERE id_articulo = '".$id_articulo."'";
 		$resultado = $db->obtenerTodos($query);
 		return $resultado;
-	} */
+	}
 
 }
