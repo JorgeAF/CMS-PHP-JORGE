@@ -35,6 +35,7 @@ class BlogController {
 		$tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 		$validar = getimagesize($portada['tmp_name']); #Tamaño de una imagen
 		
+		#error en las validacion OJO
 		if ($validar !== false) {
 			
 			#Tamaño en bytes - Dividir 1024 por kb
