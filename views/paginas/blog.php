@@ -13,7 +13,7 @@
     <div class="container-fluid d-flex justify-content-end display-lg-none">
       <a class="gray-opacity" href="#">Iniciar sesión</a>
       <a class="gray-opacity margin-left-20" href="#">Registro</a>
-      <a class="gray-opacity margin-left-20" target="_blank" href="https://wa.me/5213316923799?text=Hola, ¿me puedes ayudar?">Envíame un mensaje</a>
+      <a class="gray-opacity margin-left-20" target="_blank" href="https://wa.me/59174027285?text=Hola, ¿me puedes ayudar?">Envíame un mensaje</a>
       <a class="gray-opacity margin-left-20" href="index.php?page=blog&lang=es">ES</a>
       <a class="gray-opacity margin-left-20" href="index.php?page=blog&lang=en">EN</a>
     </div>
@@ -59,11 +59,11 @@
             $principal = $blog->mostrarArticulos('p', 1);
             if (!empty($principal)) {
               foreach ($principal as $r) {
-                /* if ($r['portada'])  {*/ ?>
+                if ($r['portada'])  { ?>
                 <div class="news__image__contain">
-                  <img class="news--image" src="https://www.mexicampo.com.mx/wp-content/uploads/2015/07/desktopwallpapers-org_-ua-10071-940x400.jpg" alt="notice">
+                  <img class="news--image" src="portadas/<?=$r['portada'];?>" alt="notice">
                 </div>
-                <!--  -->
+                <?php } ?>
               <div class="news__description">
                 <h1 class="blog--title">
                   <a href="index.php?page=articulo&slug=<?=$r['slug'];?>"><?=$r['titulo'];?></a>
@@ -156,10 +156,10 @@
                 <a href=""><img src="https://img.youtube.com/vi/3rEWfnioZzs/hqdefault.jpg" alt="video"></a>
               </div>
               <div class="widget__twitter text-center" style="overflow: scroll;">
-                <?php require_once 'views/widgets/timelineTwitter.php'; ?>
+                <?php require_once 'views/widgets/timelineTwitter.php'; ?> <!-- carga el timeline de twitter -->
               </div>
               <div class="widget__mapa text-center">
-                <?php require_once 'views/widgets/mapa.php'; ?>
+                <?php require_once 'views/widgets/mapa.php'; ?> <!-- carga el mapa de google -->
               </div>
           </aside>
       </section>

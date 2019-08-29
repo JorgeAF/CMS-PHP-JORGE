@@ -36,6 +36,9 @@
               <i class="fas fa-angle-down username--arrow" id="dropdownMenuButton"></i>
             </span>
           </button>
+          <div class="dropdown-menu dropdown-menu-right">
+              <a href="#" class="dropdown-item">Salir</a>
+            </div>
         </div>
       </header>
       <div class="p-4 p-lg-5  main__container">
@@ -63,7 +66,7 @@
                       <?php
                         if (!empty($categorias)) {
                           foreach ($categorias as $r) {
-                            echo "<option value=".$r['id'].">".$r['categoria']."</option>";
+                            echo "<option value=".$r['id_categoria'].">".$r['categoria']."</option>";
                           }
                         }
                       ?>

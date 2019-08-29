@@ -27,16 +27,16 @@ class BlogController {
 		return $categorias->obtenerCategorias();
 	}
 
-	/* public function validarImagen($portada) {
+	public function validarImagen($portada) {
 		$directorio = 'portadas/'; #Directorio en dónde guardamos la imagen
 		$archivo = $directorio.basename($portada['name']);
 
 		#pathinfo — Devuelve información acerca de la ruta de un fichero
 		$tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
-
-		$validar = getimagesize($portada['tmp_name']); #Tamalo de una imagen
+		$validar = getimagesize($portada['tmp_name']); #Tamaño de una imagen
+		
 		if ($validar !== false) {
-
+			
 			#Tamaño en bytes - Dividir 1024 por kb
 			#15,000 bytes = 15kb
 			if ($portada['size'] > 500000) {
@@ -47,41 +47,47 @@ class BlogController {
 
 			#Validar formato
 			if($tipoArchivo != "jpg" && $tipoArchivo != "png" && $tipoArchivo != "gif" && $tipoArchivo != "jpeg") {
-    		$respuesta['mensaje'] = "El archivo no tiene un formato válido";
+				$respuesta['mensaje'] = "El archivo no tiene un formato válido";
 				$respuesta['codigo'] = 400;
 				return json_encode($respuesta, JSON_PRETTY_PRINT);
 			}
-
+			#veirficar si existe el archivos
 			if (file_exists($archivo)) {
 				$respuesta['mensaje'] = "El archivo ya existe";
 				$respuesta['codigo'] = 400;
 			} else {
 				$respuesta['mensaje'] = "Es una imagen de tipo ".$validar['mime'];
-				$respuesta['codigo'] = 200;
+				$respuesta['codigo'] = 400;
 			}
+			
 		} else {
 			$respuesta['mensaje'] = "No es una imagen";
 			$respuesta['codigo'] = 400;
 		}
+		
 		return json_encode($respuesta, JSON_PRETTY_PRINT);
-	} */
+		
+		
 
+	}
+	
+	
 	public function guardarPublicacion($datos) {
 
-		/* $directorio = 'portadas/'; #Directorio donde guardamos las imagenes
+		$directorio = 'portadas/'; #Directorio donde guardamos las imagenes
 		$portada = $datos['portada'];
 		$archivo = $directorio.basename($portada['name']);
- */
+ 		
 		date_default_timezone_set('UTC');
 		$articulo = new Blog();
 		$datos['publicado_por'] = $_SESSION['id_usuario'];
 		$datos['fecha_creacion'] = date('Y-m-d');
 		$datos['hora_creacion'] = date('h:i:s');
 		$datos['slug'] = $this->crearSlug($datos['titulo']); //Mi primer publicacion -> mi-primer-publicacion
-		// $datos['portada'] = $portada['name'];
-		// if (move_uploaded_file($portada['tmp_name'], $archivo)) {
+		$datos['portada'] = $portada['name'];
+		if (move_uploaded_file($portada['tmp_name'], $archivo)) {
 			return $articulo->guardarPublicacion($datos);
-		// }
+		}
 	}
 
 	public function mostrarArticulos($tipo, $limite) {
