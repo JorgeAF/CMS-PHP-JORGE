@@ -78,7 +78,7 @@
                       <option value="0">Seleccione el tipo</option>
                       <option value="p">Principal</option>
                       <option value="r">Relevante</option>
-                      <option value="n">Normal</option>
+                      <option value="n">Nuevo</option>
                     </select>
                   </div>
                 </div>

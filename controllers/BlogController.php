@@ -39,7 +39,7 @@ class BlogController {
 			
 			#Tamaño en bytes - Dividir 1024 por kb
 			#15,000 bytes = 15kb
-			if ($portada['size'] > 500000) {
+			if ($portada['size'] > 10000000) {
 				$respuesta['mensaje'] = "El archivo es muy grande";
 				$respuesta['codigo'] = 400;
 				return json_encode($respuesta, JSON_PRETTY_PRINT);
@@ -57,7 +57,7 @@ class BlogController {
 				$respuesta['codigo'] = 400;
 			} else {
 				$respuesta['mensaje'] = "Es una imagen de tipo ".$validar['mime'];
-				$respuesta['codigo'] = 400;
+				$respuesta['codigo'] = 200;
 			}
 			
 		} else {
